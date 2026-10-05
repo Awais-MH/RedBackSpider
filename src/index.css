@@ -85,8 +85,54 @@ body {
   margin: 0 0 10px 4px;
 }
 
+.macros-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.macros-title {
+  margin: 0;
+}
+
+.macro-bar-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.macro-bar-label {
+  font-weight: 600;
+}
+
+.macro-bar-values {
+  color: #9ca3af;
+}
+
+.macro-bar-track {
+  background: #0b0f17;
+  border: 1px solid #232b3a;
+  border-radius: 999px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.macro-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.macro-bar-remaining {
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
 .food-form {
   display: flex;
+  flex-direction: column;
   gap: 8px;
   padding: 12px;
 }
@@ -98,15 +144,13 @@ body {
   color: #f3f4f6;
   padding: 10px 12px;
   font-size: 15px;
+  width: 100%;
 }
 
-.food-form input[type='text'] {
-  flex: 1;
-  min-width: 0;
-}
-
-.calories-input {
-  width: 72px;
+.food-form-macros {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
 }
 
 .btn-add {
@@ -149,6 +193,13 @@ body {
 .food-calories {
   font-size: 14px;
   color: #d1d5db;
+}
+
+.food-macros {
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 2px;
+  white-space: nowrap;
 }
 
 .btn-remove {

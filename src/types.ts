@@ -23,5 +23,14 @@ export interface FoodEntry {
   id: string
   name: string
   calories: number
+  proteinG: number
+  carbsG: number
+  fatG: number
   loggedAt: number
+}
+
+export interface MacroGoals {
+  proteinG: number
+  carbsG: number
+  fatG: number
 }

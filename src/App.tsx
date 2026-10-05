@@ -9,11 +9,20 @@ export default function App() {
   const [entries, setEntries] = useLocalStorage<FoodEntry[]>('calgauge-entries', [])
   const [editingProfile, setEditingProfile] = useState(false)
 
-  function handleAddEntry(name: string, calories: number) {
+  function handleAddEntry(
+    name: string,
+    calories: number,
+    proteinG: number,
+    carbsG: number,
+    fatG: number,
+  ) {
     const entry: FoodEntry = {
       id: crypto.randomUUID(),
       name,
       calories,
+      proteinG,
+      carbsG,
+      fatG,
       loggedAt: Date.now(),
     }
     setEntries((prev) => [...prev, entry])

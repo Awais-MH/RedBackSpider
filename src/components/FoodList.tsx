@@ -22,7 +22,14 @@ export function FoodList({ entries, onRemove }: FoodListProps) {
             <div className="food-time">{formatTime(entry.loggedAt)}</div>
           </div>
           <div className="food-item-right">
-            <span className="food-calories">{entry.calories} kcal</span>
+            <div>
+              <span className="food-calories">{entry.calories} kcal</span>
+              {(entry.proteinG > 0 || entry.carbsG > 0 || entry.fatG > 0) && (
+                <div className="food-macros">
+                  {entry.proteinG}g P · {entry.carbsG}g C · {entry.fatG}g F
+                </div>
+              )}
+            </div>
             <button
               type="button"
               className="btn-remove"

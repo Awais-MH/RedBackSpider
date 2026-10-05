@@ -1,4 +1,4 @@
-import type { ActivityLevel, GoalType, Profile } from '../types'
+import type { ActivityLevel, GoalType, MacroGoals, Profile } from '../types'
 
 const ACTIVITY_MULTIPLIERS: Record<ActivityLevel, number> = {
   sedentary: 1.2,
@@ -42,4 +42,22 @@ export function dailyCalorieGoal(profile: Profile): number {
   const weeklyAdjustment = (profile.rateKgPerWeek * KCAL_PER_KG) / 7
   const signed = profile.goalType === 'lose' ? -weeklyAdjustment : weeklyAdjustment
   return Math.max(1000, Math.round(maintenance + signed))
+}
+
+// Higher protein target while cutting helps preserve muscle in a deficit.
+const PROTEIN_G_PER_KG: Record<GoalType, number> = {
+  lose: 2.2,
+  maintain: 1.8,
+  gain: 1.8,
+}
+
+const FAT_SHARE_OF_CALORIES = 0.25
+
+export function macroGoals(profile: Profile, calorieGoal: number): MacroGoals {
+  const proteinG = Math.round(profile.weightKg * PROTEIN_G_PER_KG[profile.goalType])
+  const fatG = Math.round((calorieGoal * FAT_SHARE_OF_CALORIES) / 9)
+  const remainingCalories = Math.max(0, calorieGoal - proteinG * 4 - fatG * 9)
+  const carbsG = Math.round(remainingCalories / 4)
+
+  return { proteinG, carbsG, fatG }
 }
